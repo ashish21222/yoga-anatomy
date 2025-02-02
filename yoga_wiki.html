@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga Wiki</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4A90E2',
+                        background: '#FDFDFD',
+                        dark: '#1C1C1E'
+                    }
+                }
+            }
+        };
+    </script>
+    <script defer>
+        document.addEventListener("DOMContentLoaded", function () {
+            const categories = document.querySelectorAll(".category-item");
+            const poseList = document.getElementById("pose-list");
+            const articleSection = document.getElementById("article-section");
+            const menuToggle = document.getElementById("menu-toggle");
+            const mobileMenu = document.getElementById("mobile-menu");
+            const themeToggle = document.getElementById("theme-toggle");
+            const htmlElement = document.documentElement;
+
+            const poses = {
+                "Standing Poses": [
+                    { name: "Tadasana", description: "Mountain Pose - The foundation of all standing poses." },
+                    { name: "Virabhadrasana I", description: "Warrior I - Strengthens legs and improves focus." },
+                    { name: "Uttanasana", description: "Intense Forward Bend - Stretches the hamstrings and calms the mind." },
+                    { name: "Utthita Hasta Padangusthasana", description: "Extended Hand-to-Big-Toe Pose - Enhances balance and strengthens legs." },
+                    { name: "Vrksasana", description: "Tree Pose - Improves balance, focus, and posture." },
+                    { name: "Vrksasana Variation", description: "A variation of Tree Pose with different arm and leg placements for flexibility." },
+                    { name: "Garudasana", description: "Eagle Pose - Improves focus, balance, and strengthens the legs and core." },
+                    { name: "Natarajasana", description: "Dancer’s Pose - Enhances flexibility and strength while improving focus." },
+                    { name: "Virabhadrasana", description: "Warrior Pose - Strengthens legs, improves stamina, and enhances focus." },
+                    { name: "Extended Warrior", description: "Variation of Warrior Pose, promoting strength and endurance." },
+                    { name: "Utthita Parsvakonasana", description: "Extended Side Angle Pose - Stretches legs, spine, and opens the chest." },
+                    { name: "Parivrtta Baddha Parsvakonasana", description: "Revolved Bound Side Angle Pose - Twisting pose that strengthens and detoxifies." },
+                    { name: "Trikonasana", description: "Triangle Pose - Improves flexibility and strengthens the legs and core." },
+                    { name: "Parivrtta Trikonasana", description: "Revolved Triangle Pose - Strengthens the legs and enhances spinal mobility." }
+                ],
+                "Seated Poses": [
+                    { name: "Padmasana", description: "Lotus Pose - Promotes meditation and flexibility." },
+                    { name: "Paschimottanasana", description: "Seated Forward Bend - Stretches spine and hamstrings." }
+                ]
+            };
+
+            function updateThemeIcon() {
+                themeToggle.textContent = htmlElement.classList.contains("dark") ? "☀️" : "🌙";
+            }
+
+            function toggleTheme() {
+                if (htmlElement.classList.contains("dark")) {
+                    htmlElement.classList.remove("dark");
+                    localStorage.setItem("theme", "light");
+                } else {
+                    htmlElement.classList.add("dark");
+                    localStorage.setItem("theme", "dark");
+                }
+                updateThemeIcon();
+            }
+
+            categories.forEach(category => {
+                category.addEventListener("click", function () {
+                    const selectedCategory = category.textContent.trim();
+                    poseList.innerHTML = "";
+                    poses[selectedCategory]?.forEach(pose => {
+                        const poseDiv = document.createElement("div");
+                        poseDiv.className = "bg-gray-50 dark:bg-gray-800 p-4 rounded shadow cursor-pointer transition-transform transform hover:scale-105";
+                        poseDiv.innerHTML = `<p class="font-semibold">${pose.name}</p><p class="text-sm">${pose.description}</p>`;
+                        poseDiv.onclick = () => loadArticle(pose);
+                        poseList.appendChild(poseDiv);
+                    });
+                });
+            });
+
+            function loadArticle(pose) {
+                articleSection.innerHTML = `
+                    <h2 class="text-2xl font-bold">${pose.name}</h2>
+                    <p class="mt-2">${pose.description}</p>
+                `;
+            }
+
+            menuToggle.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+            });
+
+            themeToggle.addEventListener("click", toggleTheme);
+
+            if (localStorage.getItem("theme") === "dark") {
+                htmlElement.classList.add("dark");
+            }
+            updateThemeIcon();
+        });
+    </script>
+</head>
+<body class="bg-background text-gray-800 dark:bg-dark dark:text-white">
+    
+    <!-- Header -->
+    <header class="bg-primary text-white p-4 flex justify-between items-center">
+        <h1 class="text-lg font-semibold">Yoga Wiki</h1>
+        <div>
+            <button id="theme-toggle" class="mr-4">🌙</button>
+            <button id="menu-toggle" class="md:hidden">☰</button>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <nav id="mobile-menu" class="md:hidden bg-gray-100 dark:bg-gray-900 p-4 space-y-2 hidden">
+        <ul>
+            <li class="category-item p-2 hover:bg-gray-200 dark:hover:bg-gray-800 cursor-pointer">Standing Poses</li>
+            <li class="category-item p-2 hover:bg-gray-200 dark:hover:bg-gray-800 cursor-pointer">Seated Poses</li>
+        </ul>
+    </nav>
+    
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar (Categories) -->
+        <nav class="md:w-1/4 bg-gray-100 dark:bg-gray-900 p-4 space-y-2 hidden md:block">
+            <h2 class="text-lg font-semibold">Categories</h2>
+            <ul>
+                <li class="category-item p-2 hover:bg-gray-200 dark:hover:bg-gray-800 cursor-pointer">Standing Poses</li>
+                <li class="category-item p-2 hover:bg-gray-200 dark:hover:bg-gray-800 cursor-pointer">Seated Poses</li>
+            </ul>
+        </nav>
+        
+        <!-- Main Content Area -->
+        <main class="md:w-3/4 p-4">
+            <!-- Pose List -->
+            <section>
+                <h2 class="text-xl font-semibold">Poses</h2>
+                <div id="pose-list" class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+                    <!-- Dynamically generated poses -->
+                </div>
+            </section>
+            
+            <!-- Wiki Article -->
+            <article id="article-section" class="mt-6">
+                <h2 class="text-2xl font-bold">Select a Pose</h2>
+                <p>Click on a pose to view details.</p>
+            </article>
+        </main>
+    </div>
+    
+</body>
+</html>

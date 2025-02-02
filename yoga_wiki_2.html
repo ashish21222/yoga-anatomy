@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga Wiki</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4A90E2',
+                        background: '#FDFDFD',
+                        dark: '#1C1C1E',
+                        highlight: '#4A90E2'
+                    }
+                }
+            }
+        };
+    </script>
+    <script defer>
+        document.addEventListener("DOMContentLoaded", function () {
+            const categories = document.querySelectorAll(".category-item");
+            const poseList = document.getElementById("pose-list");
+            const articleSection = document.getElementById("article-section");
+            const menuToggle = document.getElementById("menu-toggle");
+            const mobileMenu = document.getElementById("mobile-menu");
+            const themeToggle = document.getElementById("theme-toggle");
+            const htmlElement = document.documentElement;
+            const backToTop = document.getElementById("back-to-top");
+
+            const poses = {
+                "Standing Poses": [
+                    { name: "Uttanasana", description: "Intense Forward Bend - Stretches the hamstrings and calms the mind." },
+                    { name: "Utthita Hasta Padangusthasana", description: "Extended Hand-to-Big-Toe Pose - Enhances balance and strengthens legs." },
+                    { name: "Vrksasana", description: "Tree Pose - Improves balance, focus, and posture." },
+                    { name: "Garudasana", description: "Eagle Pose - Improves focus, balance, and strengthens the legs and core." }
+                ]
+            };
+
+            function updateThemeIcon() {
+                themeToggle.textContent = htmlElement.classList.contains("dark") ? "☀️" : "🌙";
+            }
+
+            function toggleTheme() {
+                if (htmlElement.classList.contains("dark")) {
+                    htmlElement.classList.remove("dark");
+                    localStorage.setItem("theme", "light");
+                } else {
+                    htmlElement.classList.add("dark");
+                    localStorage.setItem("theme", "dark");
+                }
+                updateThemeIcon();
+            }
+
+            categories.forEach(category => {
+                category.addEventListener("click", function () {
+                    const selectedCategory = category.textContent.trim();
+                    poseList.innerHTML = "";
+                    articleSection.innerHTML = "";
+
+                    poses[selectedCategory]?.forEach((pose, index) => {
+                        const poseDiv = document.createElement("div");
+                        poseDiv.className = "bg-gray-50 dark:bg-gray-800 p-4 rounded shadow cursor-pointer transition-transform transform hover:scale-105";
+                        poseDiv.innerHTML = `<a href="#pose-${index}" class="block font-semibold text-gray-800 dark:text-white hover:text-highlight">${pose.name}</a><p class="text-sm">${pose.description}</p>`;
+                        poseList.appendChild(poseDiv);
+                        
+                        const articleDiv = document.createElement("div");
+                        articleDiv.id = `pose-${index}`;
+                        articleDiv.className = "mt-6 p-4 border rounded shadow bg-white dark:bg-gray-800";
+                        articleDiv.innerHTML = `<h2 class="text-2xl font-bold text-highlight">${pose.name}</h2><p class="mt-2">${pose.description}</p>`;
+                        articleSection.appendChild(articleDiv);
+                    });
+                });
+            });
+
+            menuToggle.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+            });
+
+            themeToggle.addEventListener("click", toggleTheme);
+
+            window.addEventListener("scroll", () => {
+                backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+            });
+
+            backToTop.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+
+            if (localStorage.getItem("theme") === "dark") {
+                htmlElement.classList.add("dark");
+            }
+            updateThemeIcon();
+        });
+    </script>
+</head>
+<body class="bg-background text-gray-800 dark:bg-dark dark:text-white">
+    
+    <!-- Header -->
+    <header class="bg-primary text-white p-4 flex justify-between items-center">
+        <h1 class="text-lg font-semibold">Yoga Wiki</h1>
+        <div>
+            <button id="theme-toggle" class="mr-4">🌙</button>
+            <button id="menu-toggle" class="md:hidden">☰</button>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <nav id="mobile-menu" class="md:hidden bg-gray-100 dark:bg-gray-900 p-4 space-y-2 hidden">
+        <ul>
+            <li class="category-item p-2 hover:bg-gray-200 dark:hover:bg-gray-800 cursor-pointer">Standing Poses</li>
+        </ul>
+    </nav>
+    
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar (Categories) -->
+        <nav class="md:w-1/4 bg-gray-100 dark:bg-gray-900 p-4 space-y-2 hidden md:block">
+            <h2 class="text-lg font-semibold">Categories</h2>
+            <ul>
+                <li class="category-item p-2 hover:bg-gray-200 dark:hover:bg-gray-800 cursor-pointer">Standing Poses</li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="md:w-3/4 p-4">
+            <!-- Pose List -->
+            <section>
+                <h2 class="text-xl font-semibold">Poses</h2>
+                <div id="pose-list" class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4"></div>
+            </section>
+            
+            <!-- Wiki Articles -->
+            <article id="article-section" class="mt-6">
+                <h2 class="text-2xl font-bold">Select a Pose Category</h2>
+                <p>Click on a category to view poses.</p>
+            </article>
+        </main>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-4 right-4 bg-primary text-white p-2 rounded-full shadow-lg hidden">▲</button>
+</body>
+</html>
