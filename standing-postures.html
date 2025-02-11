@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine Plugins -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <link rel="icon" type="image/x-icon" href="favicon_io/favicon.ico">
+  </head>
+  
+  <body>
+    <!-- Header -->
+    <header class="bg-white">
+      <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <div class="flex items-center gap-4">
+            <a class="block text-teal-600" href="#">
+              <span class="sr-only">Home</span>
+              <img src="images/monkey_strength_100x100.png" alt="Home" class="h-12 w-auto">
+            </a>
+            <h1 class="text-2xl text-gray-700 md:text-3xl lg:text-4xl">
+              Gahlot Yoga
+            </h1>
+          </div>
+          <div class="hidden md:block">
+            <nav aria-label="Global">
+              <ul class="flex items-center gap-6 text-base">
+                <li><a class="text-gray-500 transition hover:text-gray-500/75" href="index.html"> About </a></li>
+                <li><a class="text-gray-500 transition hover:text-gray-500/75" href="yogawiki.html"> Yoga Wiki </a></li>
+                <li><a class="text-gray-500 transition hover:text-gray-500/75" href="coaching.html"> Coaching </a></li>
+                <li><a class="text-gray-500 transition hover:text-gray-500/75" href="blog.html"> Blog </a></li>
+                <li><a class="text-gray-500 transition hover:text-gray-500/75" href="reviews.html"> Reviews </a></li>
+                <li><a class="text-gray-500 transition hover:text-gray-500/75" href="shop.html"> Shop </a></li>
+              </ul>
+            </nav>
+          </div>
+          <div x-data="{ open: false }" class="md:hidden relative">
+            <button @click="open = !open"
+              class="rounded-sm bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
+              <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+            <div x-show="open" x-cloak @click.away="open = false" x-transition class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50">
+              <a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">About</a>
+              <a href="yogawiki.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Yoga Wiki</a>
+              <a href="coaching.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Coaching</a>
+              <a href="blog.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Blog</a>
+              <a href="reviews.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Reviews</a>
+              <a href="shop.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Shop</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="px-4 sm:px-6 lg:px-8 py-12">
+      <h2 class="text-4xl font-bold text-gray-800 mb-6 text-center">Yoga Wiki</h2>
+      <section class="relative">
+        <div
+        class="h-64 bg-cover bg-center"
+        style="background-image: url('images/poses/standing_pose.jpeg');"
+      >
+        <div
+          class="flex items-center justify-center h-full bg-gray-900 bg-opacity-50"
+        >
+          <h1 class="text-4xl font-bold text-white">
+            Standing Poses
+          </h1>
+        </div>
+      </div>
+      </section>
+      <!-- Yoga Wiki content for standing poses -->
+       <!-- Main Content Section -->
+        <section class="bg-white dark:bg-gray-900 py-12">
+            
+            <div class="container mx-auto px-6">
+            <div class="lg:flex lg:space-x-12">
+                <!-- Sidebar: Table of Contents -->
+                <aside class="lg:w-1/4">
+                <h2 class="text-xl font-semibold text-gray-800 dark:text-white mb-4">
+                    Table of Contents
+                </h2>
+                <nav class="space-y-2">
+                    <!-- Anchor links that jump to each asana section -->
+                    <a
+                    href="#asana-1"
+                    class="block text-blue-500 dark:text-blue-400 hover:underline"
+                    >Asana 1: Easy Pose</a
+                    >
+                    <a
+                    href="#asana-2"
+                    class="block text-gray-500 dark:text-gray-300 hover:underline"
+                    >Asana 2: Lotus Pose</a
+                    >
+                    <a
+                    href="#asana-3"
+                    class="block text-gray-500 dark:text-gray-300 hover:underline"
+                    >Asana 3: Hero Pose</a
+                    >
+                    <!-- Add additional links as needed -->
+                </nav>
+                </aside>
+    
+                <!-- Content: Asanas -->
+                <div class="lg:w-3/4 mt-8 lg:mt-0">
+                <!-- Asana 1: Open by default -->
+                <div
+                    id="asana-1"
+                    x-data="{ open: true }"
+                    class="mb-8 border border-gray-200 rounded-lg shadow-sm"
+                >
+                    <!-- Toggle Button -->
+                    <button
+                    @click="open = !open"
+                    class="w-full flex items-center justify-between px-4 py-3 bg-gray-50 dark:bg-gray-800"
+                    >
+                    <span
+                        class="text-xl font-semibold text-gray-800 dark:text-white"
+                        >Asana 1: Triangle Pose</span
+                    >
+                    <!-- Icon: Show plus when closed, minus when open -->
+                    <svg
+                        x-show="!open"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-6 h-6 text-blue-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 4v16m8-8H4"
+                        />
+                    </svg>
+                    <svg
+                        x-show="open"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-6 h-6 text-blue-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M20 12H4"
+                        />
+                    </svg>
+                    </button>
+                    <!-- Collapsible Content -->
+                    <div x-show="open" x-collapse class="px-4 py-6">
+                    <!-- Asana Image -->
+                    <img
+                        src="images/asanas/trikonasana.png"
+                        alt="Triangle Pose"
+                        class="w-auto h-96 rounded mb-4"
+                    />
+    
+                    <!-- Sub-section: Description -->
+                    <div class="mb-4">
+                        <h3
+                        class="text-lg font-semibold text-gray-700 dark:text-white mb-2"
+                        >
+                        Description
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                        Easy Pose is a basic seated posture that helps improve
+                        posture and promotes calmness.
+                        </p>
+                    </div>
+    
+                    <!-- Divider -->
+                    <span class="flex items-center my-4">
+                        <span class="pr-6 text-gray-500"></span>
+                        <span class="h-px flex-1 bg-gray-300"></span>
+                    </span>
+    
+                    <!-- Sub-section: Method -->
+                    <div class="mb-4">
+                        <h3
+                        class="text-lg font-semibold text-gray-700 dark:text-white mb-2"
+                        >
+                        Method
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                        Sit on the floor with crossed legs, keeping the spine erect,
+                        and place your hands gently on your knees.
+                        </p>
+                    </div>
+    
+                    <!-- Divider -->
+                    <span class="flex items-center my-4">
+                        <span class="pr-6 text-gray-500"></span>
+                        <span class="h-px flex-1 bg-gray-300"></span>
+                    </span>
+    
+                    <!-- Sub-section: Anatomical Analysis -->
+                    <div>
+                        <h3
+                        class="text-lg font-semibold text-gray-700 dark:text-white mb-2"
+                        >
+                        Anatomical Analysis
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                        This pose helps align the vertebrae and releases tension in
+                        the back muscles.
+                        </p>
+                    </div>
+                    </div>
+                </div>
+    
+                <!-- Divider between asanas -->
+                <span class="flex items-center my-8">
+                    <span class="pr-6 text-gray-500">Next Asana</span>
+                    <span class="h-px flex-1 bg-black"></span>
+                </span>
+    
+                <!-- Asana 2 -->
+                <div
+                    id="asana-2"
+                    x-data="{ open: false }"
+                    class="mb-8 border border-gray-200 rounded-lg shadow-sm"
+                >
+                    <!-- Toggle Button -->
+                    <button
+                    @click="open = !open"
+                    class="w-full flex items-center justify-between px-4 py-3 bg-gray-50 dark:bg-gray-800"
+                    >
+                    <span
+                        class="text-xl font-semibold text-gray-800 dark:text-white"
+                        >Asana 2: Lotus Pose</span
+                    >
+                    <svg
+                        x-show="!open"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-6 h-6 text-blue-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 4v16m8-8H4"
+                        />
+                    </svg>
+                    <svg
+                        x-show="open"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-6 h-6 text-blue-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M20 12H4"
+                        />
+                    </svg>
+                    </button>
+                    <!-- Collapsible Content -->
+                    <div x-show="open" x-collapse class="px-4 py-6">
+                    <!-- Asana Image -->
+                    <img
+                        src="images/lotus-pose.jpg"
+                        alt="Lotus Pose"
+                        class="w-full rounded mb-4"
+                    />
+    
+                    <!-- Sub-section: Description -->
+                    <div class="mb-4">
+                        <h3
+                        class="text-lg font-semibold text-gray-700 dark:text-white mb-2"
+                        >
+                        Description
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                        Lotus Pose is a meditative posture that calms the mind and
+                        enhances concentration.
+                        </p>
+                    </div>
+    
+                    <!-- Divider -->
+                    <span class="flex items-center my-4">
+                        <span class="pr-6 text-gray-500"></span>
+                        <span class="h-px flex-1 bg-gray-300"></span>
+                    </span>
+    
+                    <!-- Sub-section: Method -->
+                    <div class="mb-4">
+                        <h3
+                        class="text-lg font-semibold text-gray-700 dark:text-white mb-2"
+                        >
+                        Method
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                        Gently place each foot on the opposite thigh, ensuring the
+                        knees face outward.
+                        </p>
+                    </div>
+    
+                    <!-- Divider -->
+                    <span class="flex items-center my-4">
+                        <span class="pr-6 text-gray-500"></span>
+                        <span class="h-px flex-1 bg-gray-300"></span>
+                    </span>
+    
+                    <!-- Sub-section: Anatomical Analysis -->
+                    <div>
+                        <h3
+                        class="text-lg font-semibold text-gray-700 dark:text-white mb-2"
+                        >
+                        Anatomical Analysis
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                        This pose opens up the groin and hip muscles while encouraging
+                        proper alignment of the pelvis.
+                        </p>
+                    </div>
+                    </div>
+                </div>
+    
+                <!-- Divider between asanas -->
+                <span class="flex items-center my-8">
+                    <span class="pr-6 text-gray-500">Next Asana</span>
+                    <span class="h-px flex-1 bg-black"></span>
+                </span>
+    
+                <!-- Asana 3 -->
+                <div
+                    id="asana-3"
+                    x-data="{ open: false }"
+                    class="mb-8 border border-gray-200 rounded-lg shadow-sm"
+                >
+                    <!-- Toggle Button -->
+                    <button
+                    @click="open = !open"
+                    class="w-full flex items-center justify-between px-4 py-3 bg-gray-50 dark:bg-gray-800"
+                    >
+                    <span
+                        class="text-xl font-semibold text-gray-800 dark:text-white"
+                        >Asana 3: Hero Pose</span
+                    >
+                    <svg
+                        x-show="!open"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-6 h-6 text-blue-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 4v16m8-8H4"
+                        />
+                    </svg>
+                    <svg
+                        x-show="open"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-6 h-6 text-blue-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M20 12H4"
+                        />
+                    </svg>
+                    </button>
+                    <!-- Collapsible Content -->
+                    <div x-show="open" x-collapse class="px-4 py-6">
+                    <!-- Asana Image -->
+                    <img
+                        src="images/hero-pose.jpg"
+                        alt="Hero Pose"
+                        class="w-full rounded mb-4"
+                    />
+    
+                    <!-- Sub-section: Description -->
+                    <div class="mb-4">
+                        <h3
+                        class="text-lg font-semibold text-gray-700 dark:text-white mb-2"
+                        >
+                        Description
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                        Hero Pose is a seated posture that stretches the legs and
+                        improves digestion.
+                        </p>
+                    </div>
+    
+                    <!-- Divider -->
+                    <span class="flex items-center my-4">
+                        <span class="pr-6 text-gray-500"></span>
+                        <span class="h-px flex-1 bg-gray-300"></span>
+                    </span>
+    
+                    <!-- Sub-section: Method -->
+                    <div class="mb-4">
+                        <h3
+                        class="text-lg font-semibold text-gray-700 dark:text-white mb-2"
+                        >
+                        Method
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                        Sit with your legs together and folded to one side, keeping
+                        your back straight.
+                        </p>
+                    </div>
+    
+                    <!-- Divider -->
+                    <span class="flex items-center my-4">
+                        <span class="pr-6 text-gray-500"></span>
+                        <span class="h-px flex-1 bg-gray-300"></span>
+                    </span>
+    
+                    <!-- Sub-section: Anatomical Analysis -->
+                    <div>
+                        <h3
+                        class="text-lg font-semibold text-gray-700 dark:text-white mb-2"
+                        >
+                        Anatomical Analysis
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                        This pose promotes flexibility in the hip joints and
+                        strengthens the leg muscles.
+                        </p>
+                    </div>
+                    </div>
+                </div>
+    
+                <!-- Repeat the above markup for additional asanas -->
+                </div>
+            </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100">
+        <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+          <div class="flex justify-center text-teal-600">
+            <span class="sr-only">Home</span>
+                <img src="images/monkey_strength_100x100.png" alt="Home" class="h-12 w-auto">
+          </div>
+    
+          <p class="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500">
+            Ashish Gahlot
+          </p>
+    
+          <ul class="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
+            <li>
+              <a class="text-gray-700 transition hover:text-gray-700/75" href="about-gahlot-yoga.html"> About </a>
+            </li>
+    
+            <li>
+              <a class="text-gray-700 transition hover:text-gray-700/75" href="index.html"> Home </a>
+            </li>
+    
+            <li>
+              <a class="text-gray-700 transition hover:text-gray-700/75" href="coaching.html"> Coaching </a>
+            </li>
+    
+            <li>
+              <a class="text-gray-700 transition hover:text-gray-700/75" href="yogawiki.html"> Yoga Anatomy </a>
+            </li>
+          </ul>
+    
+          <ul class="mt-12 flex justify-center gap-6 md:gap-8">
+            <li>
+              <a
+                href="https://www.facebook.com/gahlotyoga"
+                rel="noreferrer"
+                target="_blank"
+                class="text-gray-700 transition hover:text-gray-700/75"
+              >
+                <span class="sr-only">Facebook</span>
+                <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill-rule="evenodd"
+                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </a>
+            </li>
+    
+            <li>
+              <a
+                href="https://www.instagram.com/gahlotyoga"
+                rel="noreferrer"
+                target="_blank"
+                class="text-gray-700 transition hover:text-gray-700/75"
+              >
+                <span class="sr-only">Instagram</span>
+                <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </a>
+            </li>      
+          </ul>
+        </div>
+      </footer>
+  </body>
+</html>
