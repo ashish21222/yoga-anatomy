@@ -141,6 +141,10 @@
                     href="#asana-12"
                     class="block text-gray-500 dark:text-gray-300 hover:underline"
                     >Asana 12: Navasana</a>
+                    <a
+                    href="#asana-13"
+                    class="block text-gray-500 dark:text-gray-300 hover:underline"
+                    >Asana 13: Upavesasana/Malasana</a>
                     <!-- Add additional links as needed -->
                 </nav>
                 </aside>
@@ -1128,6 +1132,72 @@
                             <h3 class="text-lg font-semibold text-gray-700 dark:text-white mb-2">Lengthening</h3>
                             <p class="text-gray-600 dark:text-gray-300">
                                 The hamstrings lengthen as the legs are held in position.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Divider between asanas -->
+                <span class="flex items-center my-8">
+                    <span class="pr-6 text-gray-500">Next Asana</span>
+                    <span class="h-px flex-1 bg-black"></span>
+                </span>
+
+                <div
+                    id="asana-17"
+                    x-data="{ open: false }"
+                    class="mb-8 border border-gray-200 rounded-lg shadow-sm"
+                >
+                    <!-- Toggle Button -->
+                    <button
+                        @click="open = !open"
+                        class="w-full flex items-center justify-between px-4 py-3 bg-gray-50 dark:bg-gray-800"
+                    >
+                        <span class="text-xl font-semibold text-gray-800 dark:text-white">
+                            Asana 17: Upavesasana/Malasana
+                        </span>
+                        <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                        <svg x-show="open" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+                        </svg>
+                    </button>
+                    <!-- Collapsible Content -->
+                    <div x-show="open" x-collapse class="px-4 py-6">
+                        <!-- Asana Image -->
+                        <img
+                            src="images/asanas/malasana.png"
+                            alt="Upavesasana/Malasana"
+                            class="w-auto h-96 rounded mb-4"
+                        />
+                        <!-- Sub-section: Joint Actions -->
+                        <div class="mb-4">
+                            <h3 class="text-lg font-semibold text-gray-700 dark:text-white mb-2">Joint Actions</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Spinal axial extension; glenohumeral joint external rotation, adduction; elbow flexion; forearm pronation; wrist dorsiflexion; sacrum nutation; hip flexion, external rotation, abduction; knee flexion; ankle dorsiflexion.
+                            </p>
+                        </div>
+                        <!-- Divider -->
+                        <span class="flex items-center my-4">
+                            <span class="h-px flex-1 bg-gray-300"></span>
+                        </span>
+                        <!-- Sub-section: Working -->
+                        <div class="mb-4">
+                            <h3 class="text-lg font-semibold text-gray-700 dark:text-white mb-2">Working</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Pelvic floor: Obturator internus, levator ani. Isometrically: piriformis, obturator externus, two gemelli, quadratus femoris, biceps femoris, semitendinosus, semimembranosus, adductor magnus (long head). The legs should stay active; otherwise the deep flexion tends to collapse the hip joints, making it more challenging to activate the pelvic floor. Foot: Lumbricals, quadratus plantae, adductor hallucis, flexor hallucis brevis, flexor digitorum brevis, opponens and flexor digiti minimi, abductor digiti minimi.
+                            </p>
+                        </div>
+                        <!-- Divider -->
+                        <span class="flex items-center my-4">
+                            <span class="h-px flex-1 bg-gray-300"></span>
+                        </span>
+                        <!-- Sub-section: Lengthening -->
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-700 dark:text-white mb-2">Lengthening</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Adductor longus, adductor brevis, hamstrings, gastrocnemius, soleus, plantaris (not the gracilis, because of knee flexion).
                             </p>
                         </div>
                     </div>
